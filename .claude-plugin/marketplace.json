@@ -1,0 +1,15 @@
+{
+  "name": "claude-toothlessdev",
+  "owner": {
+    "name": "toothlessdev",
+    "url": "https://github.com/toothlessdev"
+  },
+  "description": "Daily briefing & wrap-up plugin for Claude Code by toothlessdev",
+  "plugins": [
+    {
+      "name": "daily-briefing",
+      "description": "Morning briefing (Jira tasks, tech news, yesterday summary) and nightly wrap-up",
+      "source": "./plugins/daily-briefing"
+    }
+  ]
+}

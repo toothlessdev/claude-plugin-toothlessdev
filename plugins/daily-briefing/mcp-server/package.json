@@ -1,0 +1,37 @@
+{
+  "name": "@toothlessdev/claude-daily-briefing",
+  "version": "1.0.0",
+  "description": "MCP server for daily briefing - Jira tasks, tech news, session tracking",
+  "type": "module",
+  "bin": {
+    "claude-daily-briefing": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "claude-code",
+    "mcp",
+    "jira",
+    "hacker-news",
+    "geeknews",
+    "daily-briefing"
+  ],
+  "author": "toothlessdev",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toothlessdev/claude-toothlessdev"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.2",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

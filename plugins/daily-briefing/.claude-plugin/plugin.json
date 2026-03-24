@@ -1,0 +1,12 @@
+{
+  "name": "daily-briefing",
+  "version": "1.0.0",
+  "description": "Morning briefing with Jira tasks & tech news, nightly session wrap-up",
+  "author": {
+    "name": "toothlessdev",
+    "url": "https://github.com/toothlessdev"
+  },
+  "keywords": ["morning", "night", "jira", "news", "briefing", "daily"],
+  "skills": "./skills",
+  "license": "MIT"
+}

@@ -1,0 +1,11 @@
+{
+  "name": "claude-toothlessdev",
+  "version": "1.0.0",
+  "description": "Daily briefing & wrap-up plugin for Claude Code",
+  "author": {
+    "name": "toothlessdev",
+    "url": "https://github.com/toothlessdev"
+  },
+  "repository": "https://github.com/toothlessdev/claude-toothlessdev",
+  "license": "MIT"
+}
