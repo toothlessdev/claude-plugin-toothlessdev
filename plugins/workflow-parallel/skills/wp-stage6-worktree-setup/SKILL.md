@@ -38,15 +38,17 @@ main 이름이 모호하면 `AskUserQuestion`.
 
 `scripts/git-worktree-setup.sh` 호출. 인자 형식 (스크립트 명세 참조):
 
+**필수 인자**: `--main`, `--repo`, `--pair` (1개 이상)
+**선택 인자**: `--plan`, `--todo` (untracked 보정용 — 생략 시 보정 단계 skip)
+
 ```
 bash scripts/git-worktree-setup.sh \
-  --main <main-branch> \
-  --repo <main-repo-path> \
-  --plan <plan-path> \
-  --todo <todo-path> \
+  --main <main-branch> \              # 필수
+  --repo <main-repo-path> \           # 필수
+  --pair <TICKET-KEY>:<slug> \        # 필수, 1개 이상 (반복 가능)
   --pair <TICKET-KEY>:<slug> \
-  --pair <TICKET-KEY>:<slug> \
-  ...
+  [--plan <plan-path>] \              # 선택 (untracked 시 worktree로 cp)
+  [--todo <todo-path>]                # 선택 (untracked 시 worktree로 cp)
 ```
 
 스크립트는 다음을 수행:

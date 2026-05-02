@@ -43,16 +43,15 @@ pane-2 → MCP-YYYY (~/Desktop/<repo>-MCP-YYYY/)
 
 ### Step 3 — 각 pane 에 dispatch
 
-각 pane 마다 sequential 실행 (병렬 send 는 cmux state race 위험):
+각 pane 마다 sequential 실행 (병렬 send 는 cmux state race 위험). 실제 동작은 `scripts/cmux-dispatch.sh` 를 그대로 따름:
 
-1. `/exit` send + Enter → 기존 claude 종료 대기
-2. `cd <worktree> && claude --dangerously-skip-permissions` send + Enter
-3. claude prompt 노출 대기 (read-screen polling, 최대 30초)
-4. `templates/boot-prompt.md` 의 placeholder 치환:
-   - `{plan-path}` `{TICKET-KEY}` `{N}` `{BRANCH}` `{MAIN}` `{DEPS}` `{CLOUDID}` `{SECTION}`
-5. 치환된 boot prompt send + Enter
+1. `/exit` send + Enter → 고정 `SETTLE_MS=1500ms` 대기 (기존 claude 종료)
+2. `cd <worktree> && claude --dangerously-skip-permissions` send + Enter → 고정 `PROMPT_DELAY_MS=2000ms` 대기 (claude restart)
+3. `templates/boot-prompt.md` 의 placeholder 치환 (모두 더블 중괄호 `{{VAR}}` 형식):
+   - `{{plan-path}}` `{{TICKET-KEY}}` `{{N}}` `{{BRANCH}}` `{{MAIN}}` `{{DEPS}}` `{{CLOUDID}}` `{{SECTION}}`
+4. 치환된 boot prompt send → 500ms 대기 → Enter
 
-활용 가능: `scripts/cmux-dispatch.sh` (Build 4 산출물).
+> **주의**: 현재 스크립트는 polling-based readiness 검증을 하지 않고 고정 sleep 만 사용. claude restart 가 느린 환경에서는 boot prompt 가 무시될 수 있음. 그 경우 `--skip-exit` 로 재실행하거나 SETTLE_MS/PROMPT_DELAY_MS 를 늘려서 호출.
 
 ### Step 4 — 작업 시작 검증
 
@@ -81,14 +80,15 @@ dispatch 완료 + 검증 결과 보고 후 사용자에게:
 ## 실패 처리
 
 - pane 부족: Step 1 에서 정지, 사용자 수동 split 안내
-- `/exit` 미응답: 해당 pane skip 후 보고
-- claude restart 실패 (auth / path 오류): pane 단위로 재시도 1회, 그래도 실패면 사용자 보고
-- boot prompt 미치환 placeholder: 즉시 정지 (잘못된 prompt 가 worker 를 헷갈리게 함)
+- `/exit` 미응답: 스크립트는 고정 sleep 만 하므로 자동 감지 불가 — Step 4 read-screen 결과로 사용자 판단 후 해당 pane 만 수동 재실행 (`scripts/cmux-dispatch.sh --skip-exit ...`)
+- claude restart 실패 (auth / path 오류): 스크립트는 `set -euo pipefail` 로 즉시 종료 — 재시도 자동화 없음. 사용자 보고 후 수동 재실행
+- read-screen 결과 비어있음: 스크립트가 `[warn]` 만 출력하고 진행 — 사용자에게 pane 별 수동 확인 요청
+- boot prompt 미치환 placeholder: 메인 SKILL 단계에서 즉시 정지 (스크립트 호출 전에 검증)
 
 ## Rules
 
 1. cmux 호출 방식 미확정 시 dispatch 시작 금지 (IMPL.md Q1 해소 필요)
 2. pane 매핑은 사용자 confirm 전 절대 send 금지
 3. 모든 send 는 sequential (race 방지)
-4. boot prompt 의 `{TICKET-KEY}` `{BRANCH}` `{CLOUDID}` 누락 시 송신 금지
+4. boot prompt 의 `{{TICKET-KEY}}` `{{BRANCH}}` `{{CLOUDID}}` 누락 시 송신 금지 (모든 placeholder 는 더블 중괄호 형식)
 5. dispatch 후 read-screen 검증 없이 Stage 8 로 넘어가지 않음

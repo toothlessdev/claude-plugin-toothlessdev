@@ -10,7 +10,7 @@ description: "workflow-parallel Stage 4. Task breakdown + DAG/Wave 분할. Trigg
 ## 입력
 
 - 정제된 plan markdown (Stage 1~2 산출물)
-- 작업별 explore dossier (`po-explore-<task>.md` 또는 메인 세션 컨텍스트의 Explore 결과)
+- 작업별 explore dossier (`<repo>/docs/plans/explore/wp-explore-<task-slug>.md` + `INDEX.md`, 또는 메인 세션 컨텍스트의 Explore 결과)
 - 사용자가 알린 부모 Epic (Stage 1 에서 수집)
 
 ## 실행 순서

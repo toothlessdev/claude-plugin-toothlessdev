@@ -48,7 +48,7 @@ Skill(skill="wp-stage3-codebase-explore")
 ```
 
 PLAN.md §2 Stage 3 발췌:
-> plan 의 작업 후보 K 개 각각에 대해 **Explore subagent 1개씩 병렬 dispatch**: 재사용 가능 패턴 / plan 가정 vs 실제 코드 차이점 / 회귀 위험 영역. 산출: `po-explore-<task>.md`.
+> plan 의 작업 후보 K 개 각각에 대해 **Explore subagent 1개씩 병렬 dispatch**: 재사용 가능 패턴 / plan 가정 vs 실제 코드 차이점 / 회귀 위험 영역. 산출: `<repo>/docs/plans/explore/wp-explore-<task-slug>.md` + `INDEX.md`.
 
 ### Stage 4 — task-breakdown + DAG/Wave
 
@@ -130,7 +130,7 @@ PLAN.md §2 Stage 8 발췌:
 |-------|--------|------|
 | 1 | 정제된 plan | `<repo>/docs/plans/<feature>.md` |
 | 2 | annotated plan | 동일 파일 (rev N+k) |
-| 3 | explore dossier | `<repo>/docs/plans/po-explore-<task>.md` |
+| 3 | explore dossier | `<repo>/docs/plans/explore/wp-explore-<task-slug>.md` (+ `INDEX.md`) |
 | 4 | TODO.md | `<repo>/TODO.md` |
 | 5 | Jira keys | inline 매핑 테이블 |
 | 6 | worktree | `<repo>/../<repo>-<TICKET-KEY>/` |
