@@ -1,0 +1,20 @@
+{
+  "name": "workflow-parallel",
+  "version": "0.1.0",
+  "description": "8-stage interactive workflow for parallel multi-ticket execution: plan → plannotator → explore → DAG/Wave → Jira → worktree → cmux dispatch → orchestrate",
+  "author": {
+    "name": "toothlessdev",
+    "url": "https://github.com/toothlessdev"
+  },
+  "keywords": [
+    "workflow",
+    "parallel",
+    "orchestration",
+    "cmux",
+    "worktree",
+    "jira",
+    "dispatch"
+  ],
+  "skills": "./skills",
+  "license": "MIT"
+}

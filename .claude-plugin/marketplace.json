@@ -10,6 +10,11 @@
       "name": "daily-briefing",
       "description": "Morning briefing (Jira tasks, tech news, yesterday summary) and nightly wrap-up",
       "source": "./plugins/daily-briefing"
+    },
+    {
+      "name": "workflow-parallel",
+      "description": "8-stage interactive workflow for parallel multi-ticket execution (plan → plannotator → explore → DAG → Jira → worktree → cmux dispatch → orchestrate)",
+      "source": "./plugins/workflow-parallel"
     }
   ]
 }
