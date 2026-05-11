@@ -1,11 +1,11 @@
 ---
-name: wp-stage4-task-breakdown
-description: "workflow-parallel Stage 4. Task breakdown + DAG/Wave 분할. Trigger on: /wp:stage4-task-breakdown, task breakdown, wave 분할, DAG 분할, 의존성 그래프. plan + explore 결과를 종합해 작업 의존성을 매핑하고 topological sort로 Wave(level)을 산출. TODO.md 산출물을 templates/todo.md 형식대로 생성."
+name: wp-stage5-task-breakdown
+description: "workflow-parallel Stage 5. Task breakdown + DAG/Wave 분할. Trigger on: /wp:stage5-task-breakdown, task breakdown, wave 분할, DAG 분할, 의존성 그래프. plan + explore 결과를 종합해 작업 의존성을 매핑하고 topological sort로 Wave(level)을 산출. TODO.md 산출물을 templates/todo.md 형식대로 생성."
 ---
 
-# Stage 4 — Task Breakdown + DAG/Wave 분할
+# Stage 5 — Task Breakdown + DAG/Wave 분할
 
-`workflow-parallel` 8-stage 흐름의 4번째 단계. plan rev 와 Stage 3 codebase explore dossier 를 입력 받아 작업 단위를 의존 그래프로 묶고 Wave 단위로 분할.
+`workflow-parallel` 9-stage 흐름의 5번째 단계. plan rev 와 Stage 4 codebase explore dossier 를 입력 받아 작업 단위를 의존 그래프로 묶고 Wave 단위로 분할.
 
 ## 입력
 
@@ -58,11 +58,11 @@ graph LR
 
 `templates/todo.md` 스키마대로 작성. 위치는 `<repo>/TODO.md` (메인 세션 cwd 기준). 다음 섹션을 모두 채움.
 
-1. 계획서 vs 실제 코드베이스 (Stage 3 결과 요약)
-2. 실제 Jira 티켓 매핑 (Stage 5 에서 채움 — 자리만 잡고 placeholder)
+1. 계획서 vs 실제 코드베이스 (Stage 4 결과 요약)
+2. 실제 Jira 티켓 매핑 (Stage 6 에서 채움 — 자리만 잡고 placeholder)
 3. 병렬 그룹 (Wave) — DAG 포함
 4. 진행 전략 (Wave 단위 머지, critical path)
-5. 진행 상태 (Stage 7 dispatch 후 채움)
+5. 진행 상태 (Stage 8 dispatch 후 채움)
 
 ### Step 6 — 사용자 확인
 
@@ -72,13 +72,13 @@ graph LR
 - critical path 길이
 - 병렬도 (max width)
 
-사용자 OK 후 다음 단계(Stage 5 — ticket 생성)로 진행.
+사용자 OK 후 다음 단계(Stage 6 — ticket 생성)로 진행.
 
 ## 종료 조건
 
 - TODO.md 가 작성됨
 - 사용자가 Wave 구성에 OK
-- task 목록이 Stage 5 에 입력 가능한 형태로 구조화 (각 task = title + scope + 의존 + 테스트 전략 후보)
+- task 목록이 Stage 6 에 입력 가능한 형태로 구조화 (각 task = title + scope + 의존 + 테스트 전략 후보)
 
 ## Rules
 

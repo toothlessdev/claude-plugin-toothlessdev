@@ -3,7 +3,7 @@ set -euo pipefail
 
 # cmux-dispatch.sh
 #
-# workflow-parallel Stage 7 의 cmux pane dispatch 스크립트.
+# workflow-parallel Stage 8 의 cmux pane dispatch 스크립트.
 # 1개 cmux surface 에 대해:
 #   /exit (기존 claude 종료) → cd <worktree> && claude --dangerously-skip-permissions →
 #   boot prompt send → Enter → read-screen 으로 작업 시작 확인.

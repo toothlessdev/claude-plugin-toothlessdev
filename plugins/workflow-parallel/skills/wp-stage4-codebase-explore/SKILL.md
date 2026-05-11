@@ -1,17 +1,17 @@
 ---
-name: wp-stage3-codebase-explore
-description: "Stage 3 of workflow-parallel — parallel codebase exploration. Trigger on: /wp:stage3-codebase-explore, codebase explore, 코드베이스 탐색, parallel explore, plan vs code, dispatch explore agents. Dispatches K Explore subagents in parallel — one per task candidate from the plan — to extract reusable patterns, plan-vs-actual diffs, and regression risk areas. Produces per-task analysis dossiers."
+name: wp-stage4-codebase-explore
+description: "Stage 4 of workflow-parallel — parallel codebase exploration. Trigger on: /wp:stage4-codebase-explore, codebase explore, 코드베이스 탐색, parallel explore, plan vs code, dispatch explore agents. Dispatches K Explore subagents in parallel — one per task candidate from the plan — to extract reusable patterns, plan-vs-actual diffs, and regression risk areas. Produces per-task analysis dossiers."
 ---
 
-# Stage 3 — Codebase Explore (병렬)
+# Stage 4 — Codebase Explore (병렬)
 
-Stage 2 에서 확정된 plan 의 작업 후보 K 개에 대해, **각 작업당 1개씩 Explore subagent 병렬 dispatch** → 코드베이스 분석 dossier 산출. 메인 컨텍스트 보호 + 작업별 정밀 분석.
+Stage 3 critic-verify 통과 후 plan 의 작업 후보 K 개에 대해, **각 작업당 1개씩 Explore subagent 병렬 dispatch** → 코드베이스 분석 dossier 산출. 메인 컨텍스트 보호 + 작업별 정밀 분석.
 
-이 skill은 `workflow-parallel` plugin의 8-stage 흐름 중 3단계입니다. 이전 단계: `/wp:stage2-plannotator-loop`. 다음 단계: `/wp:stage4-task-breakdown`.
+이 skill은 `workflow-parallel` plugin의 9-stage 흐름 중 4단계입니다. 이전 단계: `/wp:stage3-critic-verify`. 다음 단계: `/wp:stage5-task-breakdown`.
 
 ## 입력
 
-- Stage 2 의 plan 파일 (frontmatter `rev: N+k`, `## 작업 목록` 섹션에 K 개 후보)
+- Stage 3 critic-verify 통과한 plan 파일 (frontmatter `rev: N+k`, `## 작업 목록` 섹션에 K 개 후보)
 - 대상 repo 경로 (frontmatter 또는 사용자 입력)
 
 ## 산출물
@@ -113,7 +113,7 @@ created: {{YYYY-MM-DD}}
 |------|----|----|-----|----|
 | ...  | ✓  |    | ... | ✓  |
 
-→ 같은 행에 ✓가 2개 이상이면 Stage 4 의 의존 그래프 후보.
+→ 같은 행에 ✓가 2개 이상이면 Stage 5 의 의존 그래프 후보.
 
 ## 회귀 위험 hotspot
 
@@ -124,19 +124,19 @@ created: {{YYYY-MM-DD}}
 ### Step 5 — 사용자 보고
 
 ```
-Stage 3 완료 — {{K}}개 dossier 작성
+Stage 4 완료 — {{K}}개 dossier 작성
 - 위치: {{repo}}/docs/plans/explore/
 - INDEX: {{repo}}/docs/plans/explore/INDEX.md
 - 핵심 hotspot: {{top-3-files}}
 
-다음 단계: /wp:stage4-task-breakdown
+다음 단계: /wp:stage5-task-breakdown
 ```
 
 ## Rules
 
 1. **반드시 병렬 dispatch** — K 개 subagent 호출을 단일 응답의 multiple tool calls 로 (sequential 호출 금지, 청사진 §5 항목 4 결정)
 2. 작업당 1 subagent — 그룹별 묶음 금지 (메인 컨텍스트 보호)
-3. 각 dossier 는 200~400 단어 — 너무 길면 메인 세션이 Stage 4 에서 종합하기 어려움
+3. 각 dossier 는 200~400 단어 — 너무 길면 메인 세션이 Stage 5 에서 종합하기 어려움
 4. dossier 의 파일 경로는 항상 repo root 기준 상대 경로 (절대 경로 금지 — diff 가능성)
-5. INDEX 의 매트릭스는 Stage 4 의 DAG 작성 입력으로 활용 — 형식 일관성 유지
+5. INDEX 의 매트릭스는 Stage 5 의 DAG 작성 입력으로 활용 — 형식 일관성 유지
 6. 한국어로 작성

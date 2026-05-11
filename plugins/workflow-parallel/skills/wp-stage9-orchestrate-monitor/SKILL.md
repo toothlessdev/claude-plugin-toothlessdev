@@ -1,17 +1,17 @@
 ---
-name: wp-stage8-orchestrate-monitor
-description: "Stage 8 of /workflow:parallel — orchestrate-monitor. Trigger on: /wp:stage8-orchestrate-monitor, monitor panes, wave progress, PR detection. On-demand monitoring of dispatched cmux panes via read-screen, detects PR creation, advances to next Wave."
+name: wp-stage9-orchestrate-monitor
+description: "Stage 9 of /workflow:parallel — orchestrate-monitor. Trigger on: /wp:stage9-orchestrate-monitor, monitor panes, wave progress, PR detection. On-demand monitoring of dispatched cmux panes via read-screen, detects PR creation, advances to next Wave."
 ---
 
-# Stage 8 — Orchestrate Monitor
+# Stage 9 — Orchestrate Monitor
 
 > 메인 세션이 dispatch 된 worker pane 들의 진행을 on-demand 로 폴링. PR 생성 감지 / Wave 완료 / 다음 Wave dispatch 결정.
 >
-> 출처: `parallel-orchestrate-PLAN.md` §2 Stage 8 / §5 #8 (on-demand 우선, auto polling 은 토큰 낭비).
+> 출처: `parallel-orchestrate-PLAN.md` §2 Stage 9 / §5 #8 (on-demand 우선, auto polling 은 토큰 낭비).
 
 ## 사전 조건
 
-- Stage 7 (`wp-stage7-dispatch`) 완료 — pane → ticket 매핑 테이블 보유
+- Stage 8 (`wp-stage8-dispatch`) 완료 — pane → ticket 매핑 테이블 보유
 - 각 worker pane 에서 claude 가 작업 진행 중
 
 ## 실행 흐름
@@ -43,7 +43,7 @@ for pane in mapping:
 
 ### Step 3 — 노이즈 필터링
 
-PLAN.md §2 Stage 8 명시: spawn 된 claude 의 thinking spinner / 단순 status 변화는 보고하지 않음. **본문 변화만** 사용자에게 노출.
+PLAN.md §2 Stage 9 명시: spawn 된 claude 의 thinking spinner / 단순 status 변화는 보고하지 않음. **본문 변화만** 사용자에게 노출.
 
 이전 read-screen 과 비교 → diff 가 의미 있을 때만 사용자에게 보고.
 
@@ -69,14 +69,14 @@ Wave 1 의 모든 ticket 이 **PR-created** 면:
 
 응답:
 
-- OK → Stage 6 (`wp-stage6-worktree-setup`) 부터 Wave 2 ticket 들로 재호출
+- OK → Stage 7 (`wp-stage7-worktree-setup`) 부터 Wave 2 ticket 들로 재호출
 - Wait → 사용자가 PR review / merge 후 트리거할 때까지 대기
 
 ## 사용자 트리거 패턴
 
-- `/wp:stage8-orchestrate-monitor` — 1 회 폴링
-- `/wp:stage8-orchestrate-monitor watch` — `ScheduleWakeup` 등록 (옵션, 사용자 명시 시만)
-- `/wp:stage8-orchestrate-monitor stop` — 등록된 wakeup 취소
+- `/wp:stage9-orchestrate-monitor` — 1 회 폴링
+- `/wp:stage9-orchestrate-monitor watch` — `ScheduleWakeup` 등록 (옵션, 사용자 명시 시만)
+- `/wp:stage9-orchestrate-monitor stop` — 등록된 wakeup 취소
 
 ## Confirm Gate
 

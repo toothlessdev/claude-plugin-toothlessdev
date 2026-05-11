@@ -7,7 +7,7 @@ Claude Code plugins by toothlessdev.
 | Plugin | Description |
 |--------|-------------|
 | [daily-briefing](./plugins/daily-briefing) | Morning briefing & nightly wrap-up |
-| [workflow-parallel](./plugins/workflow-parallel) | 8-stage interactive workflow for parallel multi-ticket execution (plan → plannotator → explore → DAG/Wave → Jira → worktree → cmux dispatch → orchestrate) |
+| [workflow-parallel](./plugins/workflow-parallel) | 9-stage interactive workflow for parallel multi-ticket execution (plan → plannotator → critic-verify → explore → DAG/Wave → Jira → worktree → cmux dispatch → orchestrate) |
 
 ## Installation
 

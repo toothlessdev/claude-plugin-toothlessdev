@@ -3,7 +3,7 @@ set -euo pipefail
 
 # git-worktree-setup.sh
 #
-# workflow-parallel Stage 6 의 worktree 일괄 생성 스크립트.
+# workflow-parallel Stage 7 의 worktree 일괄 생성 스크립트.
 # fetch → sequential worktree add → pnpm 모노레포 감지 시 sequential install → untracked 보정.
 #
 # 사용법:
