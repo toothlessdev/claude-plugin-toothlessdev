@@ -7,7 +7,7 @@ description: "Stage 1 of workflow-parallel — plan intake & clarify. Trigger on
 
 Refine a rough plan / file path / inline idea into a structured plan markdown file ready for Stage 2 (plannotator-loop).
 
-이 skill은 `workflow-parallel` plugin의 8-stage 흐름 중 1단계입니다. 이전 단계: 없음. 다음 단계: `/wp:stage2-plannotator-loop`.
+이 skill은 `workflow-parallel` plugin의 9-stage 흐름 중 1단계입니다. 이전 단계: 없음. 다음 단계: `/wp:stage2-plannotator-loop`.
 
 ## 입력
 
@@ -119,6 +119,6 @@ plan rev 1 작성 완료 → {{path}}
 1. plan 파일은 항상 markdown + frontmatter (rev 추적 필수)
 2. `clarify-vague` 와 `clarify-unknown` 은 항상 둘 다 호출 (한 쪽만 호출 금지 — 청사진 §5 항목 2 결정)
 3. `AskUserQuestion` 는 한 번에 최대 5개 질문 — 초과 시 우선순위순으로 분할 호출
-4. 부모 epic key 는 Stage 1 에서 반드시 확정 (Stage 5 ticket-create 에서 link 하려면 필수)
+4. 부모 epic key 는 Stage 1 에서 반드시 확정 (Stage 6 ticket-create 에서 link 하려면 필수)
 5. 모든 사용자 대화는 한국어 (청사진 §5 항목 5 결정)
 6. plan 파일이 이미 존재하면 덮어쓰기 금지 — rev 번호 증가시켜 새 파일 또는 사용자 confirm

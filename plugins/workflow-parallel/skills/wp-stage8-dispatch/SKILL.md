@@ -1,18 +1,18 @@
 ---
-name: wp-stage7-dispatch
-description: "Stage 7 of /workflow:parallel — cmux pane dispatch. Trigger on: /wp:stage7-dispatch, dispatch panes, cmux dispatch, parallel pane boot. Sends /exit + claude restart + standardized boot prompt to each cmux pane mapped to a Wave 1 ticket, then verifies via read-screen."
+name: wp-stage8-dispatch
+description: "Stage 8 of /workflow:parallel — cmux pane dispatch. Trigger on: /wp:stage8-dispatch, dispatch panes, cmux dispatch, parallel pane boot. Sends /exit + claude restart + standardized boot prompt to each cmux pane mapped to a Wave 1 ticket, then verifies via read-screen."
 ---
 
-# Stage 7 — cmux Pane Dispatch
+# Stage 8 — cmux Pane Dispatch
 
 > Wave 1 ticket 수만큼의 cmux pane에 worktree 세션을 부팅. 표준 boot prompt 를 send + Enter 후 read-screen 으로 작업 시작 검증.
 >
-> 출처: `parallel-orchestrate-PLAN.md` §2 Stage 7 / `parallel-orchestrate-IMPL.md` Build 4 + Build 6.
+> 출처: `parallel-orchestrate-PLAN.md` §2 Stage 8 / `parallel-orchestrate-IMPL.md` Build 4 + Build 6.
 
 ## 사전 조건
 
-- Stage 6 (`wp-stage6-worktree-setup`) 완료 — N 개 worktree + 브랜치 + node_modules 준비됨
-- Stage 5 결과: ticket key ↔ branch ↔ worktree 매핑 테이블 보유
+- Stage 7 (`wp-stage7-worktree-setup`) 완료 — N 개 worktree + 브랜치 + node_modules 준비됨
+- Stage 7 결과: ticket key ↔ branch ↔ worktree 매핑 테이블 보유
 - cmux 호출 방식 결정 (IMPL.md Q1) — MCP / CLI / tmux 호환 중 하나
 - `templates/boot-prompt.md` 존재
 
@@ -60,7 +60,7 @@ pane-2 → MCP-YYYY (~/Desktop/<repo>-MCP-YYYY/)
 ### Step 5 — 산출 보고
 
 ```
-## Stage 7 dispatch 완료
+## Stage 8 dispatch 완료
 
 | pane | ticket | branch | worktree | 상태 |
 |------|--------|--------|----------|------|
@@ -73,7 +73,7 @@ pane-2 → MCP-YYYY (~/Desktop/<repo>-MCP-YYYY/)
 
 dispatch 완료 + 검증 결과 보고 후 사용자에게:
 
-> "Stage 8 (orchestrate-monitor) 로 넘어갈까요?"
+> "Stage 9 (orchestrate-monitor) 로 넘어갈까요?"
 
 응답 대기. OK 면 메인 SKILL 이 다음 stage 호출.
 
@@ -91,4 +91,4 @@ dispatch 완료 + 검증 결과 보고 후 사용자에게:
 2. pane 매핑은 사용자 confirm 전 절대 send 금지
 3. 모든 send 는 sequential (race 방지)
 4. boot prompt 의 `{{TICKET-KEY}}` `{{BRANCH}}` `{{CLOUDID}}` 누락 시 송신 금지 (모든 placeholder 는 더블 중괄호 형식)
-5. dispatch 후 read-screen 검증 없이 Stage 8 로 넘어가지 않음
+5. dispatch 후 read-screen 검증 없이 Stage 9 로 넘어가지 않음

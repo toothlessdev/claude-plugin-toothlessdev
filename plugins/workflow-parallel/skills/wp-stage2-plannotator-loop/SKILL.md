@@ -7,7 +7,7 @@ description: "Stage 2 of workflow-parallel — plannotator annotation loop. Trig
 
 Iteratively annotate the Stage 1 plan via the `plannotator-annotate` skill. 사용자가 plan markdown 위에 직접 의견 / 결정 / 보강 사항을 적으면, 메인 세션이 plan 본문에 반영하고 rev 번호를 올림.
 
-이 skill은 `workflow-parallel` plugin의 8-stage 흐름 중 2단계입니다. 이전 단계: `/wp:stage1-plan-intake`. 다음 단계: `/wp:stage3-codebase-explore`.
+이 skill은 `workflow-parallel` plugin의 9-stage 흐름 중 2단계입니다. 이전 단계: `/wp:stage1-plan-intake`. 다음 단계: `/wp:stage3-critic-verify`.
 
 ## 입력
 
@@ -85,9 +85,9 @@ Round {{k}} 완료 → plan rev {{N+k}}
 ```
 plannotator-loop 완료 → plan rev {{N+k}}
 - 총 round: {{k}}
-- 미해결 질문: {{count}}개 (Stage 3 explore 에서 자연 해소되거나 Stage 4 에서 사용자 결정)
+- 미해결 질문: {{count}}개 (Stage 3 critic-verify 에서 점검 후 Stage 4 explore / Stage 5 task-breakdown 에서 해소)
 
-다음 단계: /wp:stage3-codebase-explore
+다음 단계: /wp:stage3-critic-verify
 ```
 
 ## Rules

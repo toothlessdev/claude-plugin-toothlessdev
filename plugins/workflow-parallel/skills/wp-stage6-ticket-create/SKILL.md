@@ -1,15 +1,15 @@
 ---
-name: wp-stage5-ticket-create
-description: "workflow-parallel Stage 5. Jira 티켓 병렬 생성. Trigger on: /wp:stage5-ticket-create, jira ticket 만들기, 병렬 티켓 생성. Stage 4 의 task 목록을 받아 mcp__atlassian__createJiraIssue 를 병렬 호출. 본문은 templates/ticket-body.md 표준. 부모 epic 자동 link."
+name: wp-stage6-ticket-create
+description: "workflow-parallel Stage 6. Jira 티켓 병렬 생성. Trigger on: /wp:stage6-ticket-create, jira ticket 만들기, 병렬 티켓 생성. Stage 5 의 task 목록을 받아 mcp__atlassian__createJiraIssue 를 병렬 호출. 본문은 templates/ticket-body.md 표준. 부모 epic 자동 link."
 ---
 
-# Stage 5 — Jira Ticket 병렬 생성
+# Stage 6 — Jira Ticket 병렬 생성
 
-`workflow-parallel` 8-stage 흐름의 5번째 단계. Stage 4 의 task 목록을 받아 Jira 티켓을 병렬 생성하고 Stage 6 worktree 구성에 필요한 ticket key ↔ task 매핑 테이블을 산출.
+`workflow-parallel` 9-stage 흐름의 6번째 단계. Stage 5 의 task 목록을 받아 Jira 티켓을 병렬 생성하고 Stage 7 worktree 구성에 필요한 ticket key ↔ task 매핑 테이블을 산출.
 
 ## 입력
 
-- Stage 4 산출물의 task 목록 (title + scope + 의존 + 테스트 전략 후보)
+- Stage 5 산출물의 task 목록 (title + scope + 의존 + 테스트 전략 후보)
 - 부모 Epic key (Stage 1 에서 사용자에게 수집한 값)
 - Jira project key (사용자 입력 or 메인 세션 컨텍스트)
 - Jira cloudId (mcp__atlassian 의 search 또는 사용자 명시)
@@ -56,7 +56,7 @@ task 가 K 개라면 **K 개의 `mcp__atlassian__createJiraIssue` 도구 호출�
 |---|---|---|---|---|
 | 1 | ... | MCP-1234 | 1 | 없음 |
 
-이 테이블은 Stage 4 산출 TODO.md 의 §2 "실제 Jira 티켓 매핑" 섹션에 반영. `Edit` 으로 placeholder 를 실제 값으로 치환.
+이 테이블은 Stage 5 산출 TODO.md 의 §2 "실제 Jira 티켓 매핑" 섹션에 반영. `Edit` 으로 placeholder 를 실제 값으로 치환.
 
 ### Step 5 — 부모 Epic 보정
 
@@ -66,14 +66,14 @@ Step 3 에서 epic link 가 누락된 ticket 이 있으면 `mcp__atlassian__edit
 
 - 생성된 ticket 수
 - 부모 Epic 에 모두 link 되었는지 확인 결과
-- 다음 단계(Stage 6 — worktree setup)로 진행할지 confirm
+- 다음 단계(Stage 7 — worktree setup)로 진행할지 confirm
 
 ## 종료 조건
 
 - 모든 task 에 대응되는 Jira ticket 이 생성됨
 - 부모 Epic 에 link 됨
 - TODO.md §2 가 실제 ticket key 로 갱신됨
-- 매핑 테이블이 Stage 6 입력으로 사용 가능
+- 매핑 테이블이 Stage 7 입력으로 사용 가능
 
 ## Rules
 

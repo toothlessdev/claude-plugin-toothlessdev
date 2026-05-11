@@ -1,15 +1,15 @@
 ---
-name: wp-stage6-worktree-setup
-description: "workflow-parallel Stage 6. git worktree 일괄 생성 + pnpm install + untracked 보정. Trigger on: /wp:stage6-worktree-setup, worktree 생성, 워크트리 셋업, 병렬 worktree. Stage 5 의 ticket 매핑을 받아 N 개 worktree 를 sequential 하게 추가하고 pnpm 모노레포 시 sequential install 까지 수행."
+name: wp-stage7-worktree-setup
+description: "workflow-parallel Stage 7. git worktree 일괄 생성 + pnpm install + untracked 보정. Trigger on: /wp:stage7-worktree-setup, worktree 생성, 워크트리 셋업, 병렬 worktree. Stage 6 의 ticket 매핑을 받아 N 개 worktree 를 sequential 하게 추가하고 pnpm 모노레포 시 sequential install 까지 수행."
 ---
 
-# Stage 6 — Worktree Setup
+# Stage 7 — Worktree Setup
 
-`workflow-parallel` 8-stage 흐름의 6번째 단계. Wave 1 의 ticket 수만큼 git worktree 를 추가하고 의존성 설치 + plan/TODO 보정까지 끝낸 상태로 Stage 7 dispatch 에 넘김.
+`workflow-parallel` 9-stage 흐름의 7번째 단계. Wave 1 의 ticket 수만큼 git worktree 를 추가하고 의존성 설치 + plan/TODO 보정까지 끝낸 상태로 Stage 8 dispatch 에 넘김.
 
 ## 입력
 
-- Stage 5 산출 ticket 매핑 (각 ticket = key + slug + Wave)
+- Stage 6 산출 ticket 매핑 (각 ticket = key + slug + Wave)
 - 메인 repo 경로 (메인 세션 cwd)
 - main branch 이름 (기본 `main`, 자동 추론)
 - 부모 plan 파일 경로 + TODO.md 경로
@@ -72,13 +72,13 @@ bash scripts/git-worktree-setup.sh \
 
 ### Step 6 — 매핑 테이블 갱신 + 보고
 
-ticket key → worktree path → branch 매핑을 출력. Stage 7 dispatch 의 입력이 됨.
+ticket key → worktree path → branch 매핑을 출력. Stage 8 dispatch 의 입력이 됨.
 
 ## 종료 조건
 
 - N 개 worktree 가 생성됨
 - 각 worktree 에 node_modules + plan + TODO 가 존재
-- 매핑 테이블이 Stage 7 에 넘길 수 있는 형태
+- 매핑 테이블이 Stage 8 에 넘길 수 있는 형태
 
 ## Rules
 
