@@ -15,6 +15,11 @@
       "name": "workflow-parallel",
       "description": "9-stage interactive workflow for parallel multi-ticket execution: plan → plannotator → critic-verify → explore → DAG/Wave → Jira → worktree → cmux dispatch → orchestrate",
       "source": "./plugins/workflow-parallel"
+    },
+    {
+      "name": "adhd",
+      "description": "ADHD 실행 지원 도구 모음. /adhd 자동 라우팅 + 7개 모드: 작업 마비 부수기(/adhd:paralysis), 도파민 메뉴(/adhd:dopamine), 체크인·바디더블링(/adhd:checkin), 컨텍스트 전환(/adhd:switch), 흥미 기반 게임화(/adhd:gamify), 시간 감각 교정(/adhd:timemap), 머릿속 비우기(/adhd:braindump)",
+      "source": "./plugins/adhd"
     }
   ]
 }
