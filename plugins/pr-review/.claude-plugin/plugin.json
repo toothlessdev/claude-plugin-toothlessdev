@@ -1,0 +1,23 @@
+{
+  "name": "pr-review",
+  "version": "0.1.0",
+  "description": "실행-검증형 PR 리뷰 오케스트레이터. PR 에서 Jira 키를 뽑아 티켓 전문·연결 문서를 컨텍스트로 주입하고, 변경 심볼의 blast radius 를 외부 소비 저장소까지 추적하고, 격리된 git worktree 에서 블랙박스 테스트를 실제로 작성·실행한 뒤, 실패마다 진짜 결함인지 반증해 리포트를 만든다. 작성된 테스트는 원본 트리에 커밋하지 않는다(dry run). /pr-review <PR번호|URL>",
+  "author": {
+    "name": "toothlessdev",
+    "url": "https://github.com/toothlessdev"
+  },
+  "keywords": [
+    "code-review",
+    "pull-request",
+    "jira",
+    "blast-radius",
+    "blackbox-testing",
+    "worktree",
+    "subagent",
+    "orchestration",
+    "verification"
+  ],
+  "skills": "./skills",
+  "agents": "./agents",
+  "license": "MIT"
+}
