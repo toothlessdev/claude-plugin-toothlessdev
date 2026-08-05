@@ -18,6 +18,5 @@
     "verification"
   ],
   "skills": "./skills",
-  "agents": "./agents",
   "license": "MIT"
 }
